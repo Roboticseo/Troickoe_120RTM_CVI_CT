@@ -68,7 +68,11 @@ INCLUDE
 'GEO_0822/multpv.inc' / -- multpv is non-ones only swat==1 cells
 
 INCLUDE
+'GEO_0822/ct_mult.inc' / -- multpv is non-ones only swat==1 cells
+
+INCLUDE
 'INCL/grid_arith_0829_1.inc' / -- grid_arith
+
 
 COPY
 PERMX PERMY /
