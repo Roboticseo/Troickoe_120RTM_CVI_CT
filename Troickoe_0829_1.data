@@ -57,10 +57,10 @@ INCLUDE
 'GEO_0822/zcorn.inc' / -- zcorn
 
 INCLUDE
-'GEO_0822/ntg.inc' / -- NTG
+'GEO_0822/ntg_0829.inc' / -- NTG
 
 INCLUDE
-'GEO_0822/poro.inc' / -- poro
+'GEO_0822/poro_0829.inc' / -- poro
 
 NOECHO
 
