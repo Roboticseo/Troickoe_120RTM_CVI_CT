@@ -65,7 +65,10 @@ INCLUDE
 NOECHO
 
 INCLUDE
-'INCL/grid_arith_0823_2.inc' / -- grid_arith
+'GEO_0822/multpv.inc' / -- multpv is non-ones only swat==1 cells
+
+INCLUDE
+'INCL/grid_arith_0829_1.inc' / -- grid_arith
 
 COPY
 PERMX PERMY /
@@ -174,9 +177,9 @@ SWL(,,41:76) = 0.01*(31040*(PORO*100)^-2.97)
 SOWCR(,,1:40) = 0.01*(-1.966*LOG(PERMX/1000) + 28.084)
 SOWCR(,,41:76) = 0.01*(-1.724 * LOG(PERMX/1000)+33.227) 
 --SOWCR=(SOWCR>1)*0.2+(SOWCR<1)*((SOWCR>0)*SOWCR+0.05*(SOWCR<0))
-PCW(,,1:40)=21.72973*28*0.318316*((poro/permx)^0.5)
+PCW(,,1:40)=21.72973*28*0.318316*((poro/(1.00005E-04*((PORO*100)^5.1)))^0.5)
 PCW(,,1:40) = 0.5 * PCW 
-PCW(,,41:76)=54.59103*28*0.318316*((poro/permx)^0.5) 
+PCW(,,41:76)=54.59103*28*0.318316*((poro/(4.02456E-02*EXP(44.17*PORO)))^0.5) 
  /
 
 COPY
@@ -286,7 +289,7 @@ INCLUDE
 INCLUDE 
   'INCL\WFRP.inc' /
 INCLUDE 
-  'INCL\event_0823_2.inc' /
+  'INCL\event_0829_1.inc' /
 INCLUDE 
   'INCL\hist.inc' /
 
