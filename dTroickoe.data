@@ -30,11 +30,11 @@ WELLDIMS
 TABDIMS
 --   1       2      3       4      5      6      7
 -- NTSFUN  NTPVT  NSSFUN  NPPVT  NTFIP  NRPVT  unused  NTENDP
-     2      3      1*     1*     2*     1*     /
+     4      6      1*     1*     2*     1*     /
 REGDIMS
 --    1      2       3       4        5          6           7
 --  NTFIP  NMFIPR  NRFREG  NTFREG  maxTRACK  maxCOALNUM  maxOPERNUM
-      2     1       1*      1*       1*         1*          1*   /
+      4     1       1*      1*       1*         1*          1*   /
 --FAULTDIM
 --100000 /
 
@@ -104,6 +104,7 @@ ENDBOX
 --********FRACTURE_END***********--
 
 ARITHMETIC
+PERMX = 0
 PERMX(,,41:76) = 4.02456E-02*EXP(44.17*PORO)
 PERMX(,,77:96) = 1.00005E-04*((PORO*100)^5.1)
 PERMX(,,117:152) = (ARRCTMULT - 1) * (4.02456E-02*EXP(44.17*PORO))
@@ -130,6 +131,8 @@ PERMZ=0
 PERMZ(,,41:76) = PERMX 
 PERMZ(,,117:152) = PERMX 
 PERMZ(,,77:116) = 0.5*PERMX 
+PORO(,,117:152) = 0.01
+PORO(,,144:144) = 0.0
 MULTPV = 100000* (MULTPV!=1)+1* (MULTPV==1)
 /
 
@@ -327,10 +330,19 @@ ARITHMETIC
 pvtnum(,,1:40)=1 /
 pvtnum(,,41:68)=2 /
 pvtnum(,,69:76)=3 /
+pvtnum(,,77:116)=4 /
+pvtnum(,,117:144)=5 /
+pvtnum(,,145:152)=6 /
 satnum(,,1:40)=1 /
 satnum(,,41:76)=2 /
-eqlnum=pvtnum /
-
+satnum(,,77:116)=3 /
+satnum(,,117:152)=4 /
+eqlnum(,,1:40)=1 /
+eqlnum(,,41:68)=2 /
+eqlnum(,,69:76)=3 /
+eqlnum(,,77:116)=1 /
+eqlnum(,,117:144)=2 /
+eqlnum(,,145:152)=3 /
 fipnum=satnum /
 /
 
