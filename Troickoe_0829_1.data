@@ -3,7 +3,7 @@ RUNSPEC
 METRIC
 
 DIMENS
-68  77  76 /
+69  74  76 /
 
 EQLDIMS
 3
@@ -51,28 +51,24 @@ GRID
 NEWTRAN
 
 INCLUDE
-'GEO_0822/coord.inc' / -- coord
+'GEO_0909/grid.ecl' / -- grid
 
 INCLUDE
-'GEO_0822/zcorn.inc' / -- zcorn
+'GEO_0909/ntg.inc' / -- NTG
 
 INCLUDE
-'GEO_0822/ntg_0829.inc' / -- NTG
-
-INCLUDE
-'GEO_0822/poro_0829.inc' / -- poro
+'GEO_0909/poro.inc' / -- poro
 
 NOECHO
 
 INCLUDE
-'GEO_0822/multpv.inc' / -- multpv is non-ones only swat==1 cells
+'GEO_0909/multpv_1097.inc' / -- multpv is non-ones only swat==1 cells
 
 INCLUDE
-'GEO_0822/ct_mult_0830.inc' / -- ct permx mult cube (adecuate)
+'GEO_0909/ct_mult.inc' / -- ct permx mult cube (adecuate)
 
 INCLUDE
 'INCL/grid_arith_0829_1.inc' / -- grid_arith
-
 
 COPY
 PERMX PERMY /
@@ -172,18 +168,20 @@ SWOF
 1.00000	1.00000	0.00000	0.00000			
  /
 
+INCLUDE
+'GEO_0909/SW.INC' /
 
 ARITHMETIC
 SWL(,,1:40) = MAX((42.9+11.835*(PORO*100)-1.5613*(PORO*100)^2+0.06093*(PORO*100)^3-0.000782*(PORO*100)^4)*0.01,0.07)
-SWL(,,41:76) = 0.01*(31040*(PORO*100)^-2.97) 
+SWL(,,41:76) = 0.01*(31040*(PORO*100)^-2.97)
 --SWL = (SWL<0.7)*(SWL*(SWL>0)+(SWL<=0)*0.1)+(SWL>=0.7)*0.7 
---SWL = SWL*(SWATINIT >= SWL) + SWATINIT*(SWATINIT < SWL)
+SWL = SWL*(SWATINIT >= SWL) + SWATINIT*(SWATINIT < SWL)
 SOWCR(,,1:40) = 0.01*(-1.966*LOG(PERMX/1000) + 28.084)
 SOWCR(,,41:76) = 0.01*(-1.724 * LOG(PERMX/1000)+33.227) 
 --SOWCR=(SOWCR>1)*0.2+(SOWCR<1)*((SOWCR>0)*SOWCR+0.05*(SOWCR<0))
-PCW(,,1:40)=21.72973*28*0.318316*((poro/(1.00005E-04*((PORO*100)^5.1)))^0.5)
-PCW(,,1:40) = 0.5 * PCW 
-PCW(,,41:76)=54.59103*28*0.318316*((poro/(4.02456E-02*EXP(44.17*PORO)))^0.5) 
+--PCW(,,1:40)=21.72973*28*0.318316*((poro/(1.00005E-04*((PORO*100)^5.1)))^0.5)
+--PCW(,,1:40) = 0.5 * PCW 
+--PCW(,,41:76)=54.59103*28*0.318316*((poro/(4.02456E-02*EXP(44.17*PORO)))^0.5) 
  /
 
 COPY
@@ -215,7 +213,7 @@ SOLUTION
 
 EQUIL
      1097	135   1097    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 2443
-     1126	146   1126    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 91RTM
+     1126	146   1118    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 91RTM
      1126	146   1000    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 91RTM
 /
 
@@ -230,11 +228,6 @@ RSVD
 1780 99.7
 /
 
---AQUCT
-------	N	H	P	k	m	cf+cw	Rad  h	angle
---1 1703.5 200 191 0.2 0.000001 3500 16 180 /
---2 1771 206 167 0.18 0.000001 3500 13 180 /
--- /
 
 
 SUMMARY
@@ -287,7 +280,7 @@ HUNI
 sm3/day sm3/day ksm3 ksm3 bara /
 
 INCLUDE 
-  'INCL\Well.dat' /
+  'GEO_0909/Well.dat' /
 INCLUDE 
   'INCL\perf.inc' /
 INCLUDE 
@@ -296,6 +289,8 @@ INCLUDE
   'INCL\event_0829_1.inc' /
 INCLUDE 
   'INCL\hist.inc' /
+ INCLUDE 
+  'INCL\perf_grm.inc' /
 
 READ 1 JUL 2013 /
 
