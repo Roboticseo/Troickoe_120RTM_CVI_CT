@@ -70,6 +70,10 @@ INCLUDE
 INCLUDE
 'INCL/grid_arith_0829_1.inc' / -- grid_arith
 
+ARITHMETIC
+PERMZ(,,68:68) = 0.1* PERMZ
+ /
+
 COPY
 PERMX PERMY /
 /
