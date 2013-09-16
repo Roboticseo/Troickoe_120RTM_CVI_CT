@@ -71,7 +71,7 @@ INCLUDE
 'INCL/grid_arith_0829_1.inc' / -- grid_arith
 
 ARITHMETIC
-PERMZ(,,68:68) = 0.1* PERMZ
+PERMZ(,,68:68) = 0.01* PERMZ
 PERMZ(,,1:20) = 0.1* PERMZ
 MULTPV =1 * (MULTPV ==1) + 100* (MULTPV >1)
  /
@@ -226,8 +226,8 @@ SOLUTION
 
 EQUIL
      1097	135   1097    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 2443
-     1126	146   1118.0    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 91RTM
-     1126	146   1000    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 91RTM
+     1126	121   1118.0    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 91RTM
+     1126	121   1000    1*     1*    1*    1	1	0	1*   / -- oil bottom of well 91RTM
 /
 
 RSVD
