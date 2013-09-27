@@ -230,6 +230,7 @@ SOWCR(,,1:40) = SOWCR * 1
 SOWCR(,,41:79) = SOWCR * 0.8
 SOWCR(,,71:71) = 0.01
 SWL(,,71:71) = 0.8
+SWL(,,69:72) = MIN(0.8,SWL)
  /
 
 COPY
@@ -282,7 +283,7 @@ RSVD
 -- /
 
 THPRES
-2 3 2 /
+2 3 1 /
  /
 
 
