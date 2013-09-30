@@ -66,14 +66,14 @@ NOECHO
 INCLUDE
 'GEO_0920/ct_mult_0926.inc' / -- ct permx mult cube (adecuate)
 
-INCLUDE
-'GEO_0920/cvi_mult_0927.inc' / -- ct permx mult cube (adecuate)
+--INCLUDE
+--'GEO_0920/cvi_mult_0927.inc' / -- ct permx mult cube (adecuate)
 
 --INCLUDE
 --'INCL/grid_arith_0829_1.inc' / -- grid_arith
 
 ARITHMETIC
-ARRCVIM(,,41:79) = 1
+ARRCVIM = 1
 ARRCTMULT(,,1:40) = 1
 PERMX(,,1:40) = 1.00005E-04*((PORO*100)^5.1)
 PERMX(,,41:79) = 4.02456E-02*EXP(44.17*PORO)
