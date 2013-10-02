@@ -75,6 +75,9 @@ INCLUDE
 --INCLUDE
 --'INCL/grid_arith_0829_1.inc' / -- grid_arith
 
+INCLUDE
+'GEO_0920/marker.inc' / -- where second clay is permeable in the CT
+
 ARITHMETIC
 ARRCVIM = 1
 ARRCTMULT(,,1:40) = 1
@@ -111,6 +114,10 @@ MULTPV(1:69,73:74,1:79) = 100000* (MULTPV!=1)+1* (MULTPV==1)
 MULTPV(1:2,1:74,1:79) = 100000* (MULTPV!=1)+1* (MULTPV==1)
 MULTPV(68:69,1:74,1:79) = 100000* (MULTPV!=1)+1* (MULTPV==1)
 MULTPV =1 * (MULTPV ==1) + 1* (MULTPV ==2) + MULTPV* (MULTPV >2)
+NTG = (ARRMARKER == 2) * 1 + (ARRMARKER != 2) * NTG
+PORO = (ARRMARKER == 2) * 0.01 + (ARRMARKER != 2) * PORO
+PERMX = (ARRMARKER == 2) * 0 + (ARRMARKER != 2) * PERMX
+PERMZ = (ARRMARKER == 2) * 0.01 + (ARRMARKER != 2) * PERMZ
 /
 
 ARITHMETIC
@@ -220,6 +227,8 @@ SWOF
 1.00000	1.00000	0.00000	0.00000			
  /
 
+INCLUDE
+'GEO_0920/marker.inc' / -- where second clay is permeable in the CT
 
 ARITHMETIC
 SWL(,,1:40) = MAX((42.9+11.835*(PORO*100)-1.5613*(PORO*100)^2+0.06093*(PORO*100)^3-0.000782*(PORO*100)^4)*0.01,0.07)
@@ -237,11 +246,11 @@ KRWR(,,1:40) = 0.075440
 KRWR(,,41:79) = 0.025290 
 --KRWR(,,1:40) = KRWR * 0.1
 --KRWR(,,41:76) = KRWR * 0.1
+SOWCR = (ARRMARKER == 2) * 0.01 + (ARRMARKER != 2) * SOWCR
 SOWCR(,,1:40) = SOWCR * 1
 SOWCR(,,41:79) = SOWCR * 0.8
 SOWCR(,,71:71) = 0.01
-SWL(,,71:71) = 0.8
-SWL(,,69:72) = MIN(0.8,SWL)
+SWL = MIN(0.8,SWL)
  /
 
 COPY
