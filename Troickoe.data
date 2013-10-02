@@ -50,7 +50,10 @@ GRID
 NEWTRAN
 
 INCLUDE
-'GEO_0920/grid.ecl' / -- grid
+'GEO_0920/coord.inc' / -- grid coord
+
+INCLUDE
+'GEO_0920/zcorn.inc' / -- grid zcorn
 
 INCLUDE
 'GEO_0920/ntg.inc' / -- NTG
