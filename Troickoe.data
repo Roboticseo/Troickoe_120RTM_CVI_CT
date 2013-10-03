@@ -373,8 +373,6 @@ INCLUDE
   'INCL\event_0829_1.inc' /
 INCLUDE 
   'INCL\hist.inc' /
- INCLUDE 
-  'INCL\perf_grm.inc' /
 
 READ 1 JUL 2013 /
 
