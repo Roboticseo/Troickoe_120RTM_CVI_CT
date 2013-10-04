@@ -79,9 +79,9 @@ INCLUDE
 'GEO_0920/marker.inc' / -- where second clay is permeable in the CT
 
 INCLUDE
-'GEO_0920/ARRSH2M_1003.INC' / -- cube defines mult on zperm for second shale into CT
+'GEO_0920/ARRSH2M_1004.INC' / -- cube defines mult on zperm for second shale into CT
 INCLUDE
-'GEO_0920/ARRSH1M_1003.INC' / -- cube defines mult on zperm for first shale into CT (71 layer)
+'GEO_0920/ARRSH1M_1004.INC' / -- cube defines mult on zperm for first shale into CT (71 layer)
 
 ARITHMETIC
 ARRCVIM = 1
@@ -131,8 +131,8 @@ MULTPV =1 * (MULTPV ==1) + 100* (MULTPV >1)
 MULTPV(1:2,1:74,1:40) = 1
 MULTPV(1:69,1:2,1:40) = MIN(50,MULTPV)
 MULTPV(1:69,73:74,1:40) = MIN(50,MULTPV)
---PERMZ = PERMZ * ARRSH2M * (ARRMARKER == 2) + (ARRMARKER != 2)*PERMZ
---PERMZ(,,70:72) = PERMZ * ARRSH1M*(PORO==0.01) + PERMZ * 1*(PORO!=0.01)
+PERMZ = PERMZ * ARRSH2M * (ARRMARKER == 2) + (ARRMARKER != 2)*PERMZ
+PERMZ(,,70:72) = PERMZ * ARRSH1M*(PORO==0.01) + PERMZ * 1*(PORO!=0.01)
 --NTG(36:44,42:49,10:20) = 0
  /
 
