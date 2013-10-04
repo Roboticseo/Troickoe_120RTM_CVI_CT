@@ -238,7 +238,7 @@ INCLUDE
 'GEO_0920/marker.inc' / -- where second clay is permeable in the CT
 
 INCLUDE
-'ARRMPCW.map' /
+'GEO_0920/ARRMPCW.inc' /
 
 ARITHMETIC
 SWL(,,1:40) = MAX((42.9+11.835*(PORO*100)-1.5613*(PORO*100)^2+0.06093*(PORO*100)^3-0.000782*(PORO*100)^4)*0.01,0.07)
