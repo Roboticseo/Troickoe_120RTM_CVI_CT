@@ -67,10 +67,10 @@ INCLUDE
 NOECHO
 
 INCLUDE
-'GEO/permx.inc' / -- ct permx mult cube (adecuate)
+'GEO/permx.inc' / -- ct permx mult cube
 
 INCLUDE
-'GEO/permz.inc' / -- ct permx mult cube (adecuate)
+'GEO/permz.inc' / -- ct permx mult cube
 
 INCLUDE
 'GEO/marker.inc' / -- where second clay is permeable in the CT
@@ -93,7 +93,6 @@ MULTPV =1 * (MULTPV ==1) + 100* (MULTPV >1)
 MULTPV(1:2,1:74,1:40) = 1
 MULTPV(1:69,1:2,1:40) = MIN(50,MULTPV)
 MULTPV(1:69,73:74,1:40) = MIN(50,MULTPV)
---NTG(36:44,42:49,10:20) = 0
  /
 
 COPY
