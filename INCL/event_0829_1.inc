@@ -1,6 +1,7 @@
 ETAB
 2734	01.09.2009	PROD	HLIQ  HWEF    BHPT 10 
 2734	13.09.2012	INJE	HWAT  HWEF    BHPT 500 
+2734_CT	01.10.2012	INJE	HWAT  HWEF    BHPT 500 
 --********************--
 2443	01.05.2013	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
@@ -25,12 +26,14 @@ ETAB
 --********************--
 2265	01.03.2009	PROD	HLIQ  HWEF    BHPT 10 
 2265	12.05.2011	INJE	HWAT  HWEF    BHPT 500 
+2265_CT	01.11.2011	INJE	HWAT  HWEF    BHPT 500 
 --********************--
 2604	01.03.2010	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
 2605	01.01.2010	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
 2466	01.01.2002	PROD	HLIQ  HWEF    BHPT 10 
+2466	03.09.2013	INJE	HWAT  HWEF    BHPT 500 
 --********************--
 2607	01.12.2009	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
@@ -39,6 +42,7 @@ ETAB
 --********************--
 2602	01.06.2010	PROD	HLIQ  HWEF    BHPT 10 
 2602	08.09.2012	INJE	HWAT  HWEF    BHPT 500 
+2602_CT	01.09.2012	INJE	HWAT  HWEF    BHPT 500 
 --********************--
 2603	01.08.2009	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
@@ -51,5 +55,7 @@ ETAB
 2516	01.07.2008	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
 2517	01.04.2008	PROD	HLIQ  HWEF    BHPT 10 
+--********************--
+2445	01.07.2013	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
 ENDE
