@@ -33,7 +33,7 @@ ETAB
 2605	01.01.2010	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 2466	01.01.2002	PROD	HLIQ  HWEF    BHPT 1 
-2466	03.09.2013	INJE	HWAT  HWEF    BHPT 500 
+2466	03.09.2013	INJE	HWAT  HWEF    BHPT 250 
 --********************--
 2607	01.12.2009	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
@@ -57,6 +57,6 @@ ETAB
 --********************--
 2517	01.04.2008	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
-2445	01.07.2013	PROD	HLIQ  HWEF    BHPT 1 
+2445	01.06.2013	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 ENDE
