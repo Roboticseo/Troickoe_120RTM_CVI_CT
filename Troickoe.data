@@ -50,10 +50,8 @@ GRID
 NEWTRAN
 
 INCLUDE
-'GEO_0920/coord.inc' / -- grid coord
+'GEO_0920/grid.grdecl' / -- grid coord
 
-INCLUDE
-'GEO_0920/zcorn.inc' / -- grid zcorn
 
 INCLUDE
 'GEO_0920/ntg.inc' / -- NTG
@@ -64,13 +62,17 @@ INCLUDE
 INCLUDE
 'GEO_0920/ARRDEPT.INC' / -- depths of cells
 
+INCLUDE
+'GEO_0920/marker2.map' / -- метка ячеек в турнее где permx == 0, 
+-- это неколлектор, который должен проводить в направлении Z
+
 NOECHO
 
-INCLUDE
-'GEO_0920/ct_mult_1001.inc' / -- ct permx mult cube (adecuate)
-
-INCLUDE
-'GEO_0920/cvi_mult_0927.inc' / -- ct permx mult cube (adecuate)
+--INCLUDE
+--'GEO_0920/ct_mult_1001.inc' / -- ct permx mult cube (adecuate)
+--
+--INCLUDE
+--'GEO_0920/cvi_mult_0927.inc' / -- ct permx mult cube (adecuate)
 
 --INCLUDE
 --'INCL/grid_arith_0829_1.inc' / -- grid_arith
@@ -83,14 +85,13 @@ INCLUDE
 INCLUDE
 'GEO_0920/ARRSH1M_1004.INC' / -- cube defines mult on zperm for first shale into CT (71 layer)
 
+INCLUDE
+'MULTS.inc' / -- where second clay is permeable in the CT
+
 ARITHMETIC
-ARRCVIM = 1
-ARRCTMULT(,,1:40) = 1
-PERMX(,,1:40) = 1.00005E-04*((PORO*100)^5.1)
+PERMX(,,1:40) = 1.0000E-07*((PORO*100)^7.184)
 PERMX(,,41:79) = 4.02456E-02*EXP(44.17*PORO)
-PERMX(,,1:40) = PERMX * ARRCVIM 
 PERMX = MIN(PERMX, 2000)
-PERMX(,,41:79) = ARRCTMULT * PERMX
 ARR001(,,1:40) = MAX((42.9+11.835*(PORO*100)-1.5613*(PORO*100)^2+0.06093*(PORO*100)^3-0.000782*(PORO*100)^4)*0.01,0.07)
 ARR001(,,41:79) = 0.01*(31040*(PORO*100)^-2.97) 
 ARR002(,,1:40) = 0.01*(-1.966*LOG(PERMX/1000) + 28.084) * 1
@@ -114,10 +115,14 @@ MULTPV(,,1:40) = MULTPV*(ARRDEPT<=1097) + 1*(ARRDEPT>1097)
 MULTPV(,,41:70) = MULTPV*(ARRDEPT<=1118) + 1*(ARRDEPT>1118)
 MULTPV(,,72:79) = 1 
 MULTPV =2 * (MULTPV ==1) + 1* (MULTPV !=1)
-MULTPV(1:69,1:2,1:79) = 100000* (MULTPV!=1)+1* (MULTPV==1)
-MULTPV(1:69,73:74,1:79) = 100000* (MULTPV!=1)+1* (MULTPV==1)
-MULTPV(1:2,1:74,1:79) = 100000* (MULTPV!=1)+1* (MULTPV==1)
-MULTPV(68:69,1:74,1:79) = 100000* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(1:69,1:2,1:40) = 100000* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(1:69,73:74,1:40) = 5000000* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(1:2,1:74,1:40) = 100000* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(68:69,1:74,1:40) = 5000000* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(1:69,1:2,41:79) = 10* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(1:69,73:74,41:79) = 10* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(1:2,1:74,41:79) = 10* (MULTPV!=1)+1* (MULTPV==1)
+MULTPV(68:69,1:74,41:79) = 10* (MULTPV!=1)+1* (MULTPV==1)
 MULTPV =1 * (MULTPV ==1) + 1* (MULTPV ==2) + MULTPV* (MULTPV >2)
 NTG = (ARRMARKER == 2) * 1 + (ARRMARKER != 2) * NTG
 PORO = (ARRMARKER == 2) * 0.01 + (ARRMARKER != 2) * PORO
@@ -127,18 +132,53 @@ PERMZ = (ARRMARKER == 2) * 0.01 + (ARRMARKER != 2) * PERMZ
 
 ARITHMETIC
 PERMZ(,,71:71) = 0.1* PERMZ
-MULTPV =1 * (MULTPV ==1) + 100* (MULTPV >1)
-MULTPV(1:2,1:74,1:40) = 1
-MULTPV(1:69,1:2,1:40) = MIN(50,MULTPV)
-MULTPV(1:69,73:74,1:40) = MIN(50,MULTPV)
+--MULTPV =1 * (MULTPV ==1) + 100* (MULTPV >1)
+--MULTPV(1:2,1:74,1:40) = 1
+MULTPV(,,1:40) = MIN(1000,MULTPV)
+--MULTPV(1:69,73:74,1:40) = MIN(50,MULTPV)
 PERMZ = PERMZ * ARRSH2M * (ARRMARKER == 2) + (ARRMARKER != 2)*PERMZ
 PERMZ(,,70:72) = PERMZ * ARRSH1M*(PORO==0.01) + PERMZ * 1*(PORO!=0.01)
 --NTG(36:44,42:49,10:20) = 0
+PERMX = ARRMCVI * ARRMCT * ARRPERMXX * PERMX
+PERMZ = ARRMCVI * ARRMCT * ARRPERMXX * PERMZ
+PERMZ = (arrmarker2 == 0) * PERMZ + (arrmarker2 == 1) * PERMZ * ARRMZCT
  /
 
 COPY
 PERMX PERMY /
 /
+
+
+INCLUDE
+'GEO_0920/marker.inc' / -- where second clay is permeable in the CT
+
+INCLUDE
+'GEO_0920/ARRMPCW.inc' /
+
+ARITHMETIC
+SWL(,,1:40) = MAX((42.9+11.835*(PORO*100)-1.5613*(PORO*100)^2+0.06093*(PORO*100)^3-0.000782*(PORO*100)^4)*0.01,0.07)
+SWL(,,41:79) = 0.01*(31040*(PORO*100)^-2.97) 
+SOWCR(,,1:40) = 0.01*(-1.966*LOG(PERMX/1000) + 28.084)
+SOWCR(,,41:79) = 0.01*(-1.724 * LOG(PERMX/1000)+33.227) 
+PCW(,,1:40)=3.02563*28*0.318316*((poro/(1.00005E-04*((PORO*100)^5.1)))^0.5)
+PCW(,,41:79)=0.2*28*0.318316*((poro/(4.02456E-02*EXP(44.17*PORO)))^0.5) 
+PCW(,,41:79) = (PORO != 0.01) *PCW * ARRMPCWA
+PCW(,,1:40) = (PORO != 0.01) *PCW * ARRMPCWA
+KRW = 1 
+KRWR(,,1:40) = 0.075440 
+KRWR(,,41:79) = 0.025290 
+SOWCR = (ARRMARKER == 2) * 0.01 + (ARRMARKER != 2) * SOWCR
+SOWCR(,,1:40) = SOWCR * 1
+SOWCR(,,41:79) = SOWCR * 0.8
+SOWCR(,,71:71) = 0.01
+SWL = MIN(0.8,SWL) 
+PCW = ARRPC6 * PCW
+PCW = PCW *ARRPCT
+KRW = 1 
+KRW(,,1:40) = 1
+KRW(,,41:79) = 0.7
+SOWCR = SOWCR * ARRCVISOWCR 
+ /
 
 --MINPV
 --30
@@ -234,36 +274,7 @@ SWOF
 1.00000	1.00000	0.00000	0.00000			
  /
 
-INCLUDE
-'GEO_0920/marker.inc' / -- where second clay is permeable in the CT
 
-INCLUDE
-'GEO_0920/ARRMPCW.inc' /
-
-ARITHMETIC
-SWL(,,1:40) = MAX((42.9+11.835*(PORO*100)-1.5613*(PORO*100)^2+0.06093*(PORO*100)^3-0.000782*(PORO*100)^4)*0.01,0.07)
-SWL(,,41:79) = 0.01*(31040*(PORO*100)^-2.97) 
---SWL = (SWL<0.7)*(SWL*(SWL>0)+(SWL<=0)*0.1)+(SWL>=0.7)*0.7 
---SWL = SWL*(SWATINIT >= SWL) + SWATINIT*(SWATINIT < SWL)
-SOWCR(,,1:40) = 0.01*(-1.966*LOG(PERMX/1000) + 28.084)
-SOWCR(,,41:79) = 0.01*(-1.724 * LOG(PERMX/1000)+33.227) 
---SOWCR=(SOWCR>1)*0.2+(SOWCR<1)*((SOWCR>0)*SOWCR+0.05*(SOWCR<0))
-PCW(,,1:40)=3.02563*28*0.318316*((poro/(1.00005E-04*((PORO*100)^5.1)))^0.5)
-PCW(,,41:79)=0.2*28*0.318316*((poro/(4.02456E-02*EXP(44.17*PORO)))^0.5) 
-PCW(,,41:79) = (PORO != 0.01) *PCW * ARRMPCW
-PCW(,,1:40) = (PORO != 0.01) *PCW * ARRMPCW
---PCW(,,1:40) = PCW * 4.49
-KRW = 1 
-KRWR(,,1:40) = 0.075440 
-KRWR(,,41:79) = 0.025290 
---KRWR(,,1:40) = KRWR * 0.1
---KRWR(,,41:76) = KRWR * 0.1
-SOWCR = (ARRMARKER == 2) * 0.01 + (ARRMARKER != 2) * SOWCR
-SOWCR(,,1:40) = SOWCR * 1
-SOWCR(,,41:79) = SOWCR * 0.8
-SOWCR(,,71:71) = 0.01
-SWL = MIN(0.8,SWL)
- /
 
 COPY
  SWL SWCR /
@@ -315,7 +326,7 @@ RSVD
 -- /
 
 THPRES
-2 3 2 /
+2 3 0 /
  /
 
 
@@ -414,8 +425,8 @@ INCLUDE
   'GEO_0920/Well.dat' /
 INCLUDE 
   'INCL\perf.inc' /
-INCLUDE 
-  'INCL\WFRP.inc' /
+--INCLUDE 
+--  'INCL\WFRP.inc' /
 INCLUDE 
   'INCL\event_0829_1.inc' /
 INCLUDE 
