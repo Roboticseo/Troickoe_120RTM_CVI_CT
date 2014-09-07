@@ -25,7 +25,7 @@ ETAB
 2264	01.03.2009	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 2265	01.03.2009	PROD	HLIQ  HWEF    BHPT 1 
-2265	12.05.2011	INJE	HWAT  HWEF    BHPT 220 
+2265	12.05.2011	INJE	WIT 1000000   BHPT 220 
 2265_CT	01.11.2011	INJE	HWAT  HWEF    BHPT 250 
 --********************--
 2604	01.03.2010	PROD	HLIQ  HWEF    BHPT 1 
@@ -51,12 +51,16 @@ ETAB
 2726	01.11.2009	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 2518	01.06.2008	PROD	HLIQ  HWEF    BHPT 1 
-2518	01.05.2013	PROD	HOIL  HWEF    BHPT 1 -- предположительно порван СТ
+--2518	01.05.2013	PROD	HOIL  HWEF    BHPT 1 -- предположительно порван СТ
 --********************--
 2516	01.07.2008	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 2517	01.04.2008	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 2445	01.06.2013	PROD	HLIQ  HWEF    BHPT 1 
+--********************--
+2512G	01.05.2014	PROD	HLIQ  HWEF    BHPT 1 
+--********************--
+2514G	01.07.2014	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 ENDE
