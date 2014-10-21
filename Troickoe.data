@@ -9,6 +9,11 @@ EQLDIMS
 3
 /
 
+GRIDOPTS
+YES 0 2
+/
+
+
 --CVI		=1-40
 --CTkz1		=41-70
 --shale		=71
@@ -149,6 +154,7 @@ PERMX PERMY /
 /
 
 
+
 INCLUDE
 'GEO_0920/marker.inc' / -- where second clay is permeable in the CT
 
@@ -178,6 +184,13 @@ KRW = 1
 KRW(,,1:40) = 1
 KRW(,,41:79) = 0.7
 SOWCR = SOWCR * ARRCVISOWCR 
+PINCHNUM = 1
+PINCHNUM(39:43,44:49,1:20) = 2
+ /
+
+PINCHREG
+5* /
+0.5 GAP  /
  /
 
 --MINPV
@@ -432,7 +445,7 @@ INCLUDE
 INCLUDE 
   'INCL\hist.inc' /
 
-READ 1 JAN 2015 /
+READ 1 JAN 2016 /
 
 STOP
 
