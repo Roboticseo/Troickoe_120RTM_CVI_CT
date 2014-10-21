@@ -64,4 +64,6 @@ ETAB
 2514G	01.07.2014	PROD	HLIQ  HWEF    BHPT 1 
 --********************--
 2511G	01.09.2014	PROD	HLIQ  HWEF    BHPT 1 
+--********************--
+2519G	01.09.2014	PROD	HLIQ  HWEF    BHPT 50 
 ENDE
